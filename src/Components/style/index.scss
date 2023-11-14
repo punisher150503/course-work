@@ -1,0 +1,86 @@
+body{
+    background-color: silver;
+}
+
+.text-search {
+    margin-right: 10px;
+}
+
+.ipso_text {
+    color: black;
+    font-size: 20px;
+    font-weight: bolder;
+    margin-right: 7px;
+}
+
+.img_carousel {
+    display: block;
+    width: 100%;
+    height: 600px;
+}
+
+.text_h1 {
+    color: white;
+    background: rgba($color: #000000, $alpha: 0.5);
+}
+
+.main_text{
+    font-size: 50px;
+    font-weight: bolder;
+    text-align: center;
+    margin-top: 25px;
+}
+
+.logo{
+    height: 480px;
+    margin-left: 65px;
+}
+
+.head_text{
+    text-align: center;
+    font-weight: bolder;
+    margin: 40px 0 30px 0;
+}
+
+.text_info{
+    text-align: justify;
+    font-size:large;
+}
+
+.text_info_row{
+    background-color: silver;
+    border: none;
+}
+
+.main_container{
+    margin-top: 20px;
+}
+
+.main_cards{
+    text-align: center;
+    width: 80%;
+    margin: 30px auto 0 auto;
+}
+
+.news_container{
+    width: 75%;
+}
+.news_text{
+    text-align: justify;
+    margin-top: 30px;
+}
+
+
+.news_img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.main_text{
+    margin: 10px 0 30px 0;
+}
+.active_link {
+    color: red;
+    font-weight: bold;
+  }
