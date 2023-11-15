@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
-import { Nav, Button, Container, Form, FormControl, Navbar } from 'react-bootstrap';
+import { Nav, Container, Form, Navbar } from 'react-bootstrap';
 import logo from './logo.png'
+import inst from './instagram.svg'
+import facebook from './facebook.svg'
+import twit from './twitter.svg'
+import youtube from './youtube.svg'
+
 import './style/index.scss'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -16,7 +21,7 @@ class Header extends Component {
     render() {
         return (
             <div>
-                <Navbar  collapseOnSelect expand="md" bg='secondary' variant='dark'>
+                <Navbar collapseOnSelect expand="md" bg='secondary' variant='dark'>
                     <Container>
                         <Navbar.Brand href="/">
                             <img
@@ -34,13 +39,31 @@ class Header extends Component {
                                 <Nav.Link href="/news" className='text-dark' activeClassName="active_link"> Новини </Nav.Link>
                                 <Nav.Link href="/about" className='text-dark' activeClassName="active_link"> Про ІПсО України </Nav.Link>
                             </Nav>
-                            <Form inline className='d-flex justify-content-between'>
-                                <FormControl
-                                    type='text'
-                                    placeholder='Search'
-                                    className='text-search'>
-                                </FormControl>
-                                <Button variant='outline-info'>Search</Button>
+                            <Form>
+                                <img className='social_img'
+                                    src={inst}
+                                    height="25"
+                                    width="25"
+                                    alt="inst"
+                                />
+                                <img className='social_img'
+                                    src={facebook}
+                                    height="25"
+                                    width="25"
+                                    alt="facebook"
+                                />
+                                <img className='social_img'
+                                    src={twit}
+                                    height="25"
+                                    width="25"
+                                    alt="twit"
+                                />
+                                <img className='social_img'
+                                    src={youtube}
+                                    height="30"
+                                    width="30"
+                                    alt="youtube"
+                                />
                             </Form>
                         </Navbar.Collapse>
                     </Container>
@@ -48,10 +71,10 @@ class Header extends Component {
 
                 <Router>
                     <Routes>
-                        <Route exact path="/" element = {<Main/>} />
-                        <Route exact path="/about" element = {<About/>} />
-                        <Route exact path="/news" element={<News/>} />
-                        <Route exact path="/select_news" element = {<SelectNews/>} />
+                        <Route exact path="/" element={<Main />} />
+                        <Route exact path="/about" element={<About />} />
+                        <Route exact path="/news" element={<News />} />
+                        <Route exact path="/select_news" element={<SelectNews />} />
                     </Routes>
                 </Router>
             </div>

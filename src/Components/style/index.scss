@@ -59,7 +59,7 @@ body{
 .main_cards{
     text-align: center;
     width: 80%;
-    margin: 30px auto 0 auto;
+    margin: 20px auto 0 auto;
 }
 
 .news_container{
@@ -69,7 +69,6 @@ body{
     text-align: justify;
     margin-top: 30px;
 }
-
 
 .news_img{
     width: 100%;
@@ -84,3 +83,13 @@ body{
     color: red;
     font-weight: bold;
   }
+
+.form_search{
+    display: flex;
+    width: 30%;
+    margin: 20px auto 0 auto;
+}
+
+.social_img{
+    margin: 0 5px 0 5px;
+}
