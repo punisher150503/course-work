@@ -17,6 +17,7 @@ import SelectNews from '../Pages/SelectNews';
 
 
 
+
 class Header extends Component {
     render() {
         return (
@@ -36,35 +37,24 @@ class Header extends Component {
                         <Navbar.Toggle aria-controls='responsive-navbar-nav' />
                         <Navbar.Collapse id='responsive-navbar-nav' className='d-flex align-items-center justify-content-between'>
                             <Nav className="mr-auto">
-                                <Nav.Link href="/news" className='text-dark' activeClassName="active_link"> Новини </Nav.Link>
-                                <Nav.Link href="/about" className='text-dark' activeClassName="active_link"> Про ІПсО України </Nav.Link>
+                                <Nav.Link href="/news" className='text-dark'> Новини </Nav.Link>
+                                <Nav.Link href="/about" className='text-dark'> Про ІПсО України </Nav.Link>
                             </Nav>
                             <Form>
-                                <img className='social_img'
-                                    src={inst}
-                                    height="25"
-                                    width="25"
-                                    alt="inst"
-                                />
-                                <img className='social_img'
-                                    src={facebook}
-                                    height="25"
-                                    width="25"
-                                    alt="facebook"
-                                />
-                                <img className='social_img'
-                                    src={twit}
-                                    height="25"
-                                    width="25"
-                                    alt="twit"
-                                />
-                                <img className='social_img'
-                                    src={youtube}
-                                    height="30"
-                                    width="30"
-                                    alt="youtube"
-                                />
+                                <a href="https://www.instagram.com/sof_ua/" target="_blank" rel="noopener noreferrer">
+                                    <img className='social_img' src={inst} height="25" width="25" alt="inst" />
+                                </a>
+                                <a href="https://www.facebook.com/usofcom/?locale=uk_UA" target="_blank" rel="noopener noreferrer">
+                                    <img className='social_img' src={facebook} height="25" width="25" alt="facebook" />
+                                </a>
+                                <a href="https://twitter.com/DefenceU/status/1497127914483204096" target="_blank" rel="noopener noreferrer">
+                                    <img className='social_img' src={twit} height="25" width="25" alt="twit" />
+                                </a>
+                                <a href="https://www.youtube.com/@sof_ua" target="_blank" rel="noopener noreferrer">
+                                    <img className='social_img' src={youtube} height="30" width="30" alt="youtube" />
+                                </a>
                             </Form>
+
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>
@@ -74,7 +64,7 @@ class Header extends Component {
                         <Route exact path="/" element={<Main />} />
                         <Route exact path="/about" element={<About />} />
                         <Route exact path="/news" element={<News />} />
-                        <Route exact path="/select_news" element={<SelectNews />} />
+                        <Route exact path="/select_news/:id" element={<SelectNews />} />
                     </Routes>
                 </Router>
             </div>

@@ -1,14 +1,15 @@
-import React, { Component } from 'react';
-import NewsPage from '../Components/NewsPage'
+import React from 'react';
+import NewsPage from '../Components/NewsPage';
+import { useParams } from 'react-router-dom';
 
-class SelectNews extends Component {
-    render() {
-        return (
-            <div>
-                    <NewsPage />
-            </div>
-        );
-    }
+const SelectNews = ({ news }) => {
+    const { id } = useParams();
+
+    return (
+        <div>
+            <NewsPage newsItemId={id} news={news} />
+        </div>
+    );
 }
 
 export default SelectNews;

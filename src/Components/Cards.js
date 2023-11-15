@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import './style/index.scss'
-import { Container, Form, FormControl, Modal } from 'react-bootstrap';
+import Form from 'react-bootstrap/Form';
+import FormControl from 'react-bootstrap/FormControl';
+import Modal from 'react-bootstrap/Modal';
+import { Link } from 'react-router-dom';
 
 
 class Cards extends Component {
@@ -16,7 +18,25 @@ class Cards extends Component {
                 text: '',
                 source: '',
             },
+            news: [],
         };
+    }
+
+    componentDidMount() {
+        this.fetchNews();
+    }
+
+    async fetchNews() {
+        try {
+            const response = await fetch('http://localhost:3001/news');
+            if (!response.ok) {
+                throw new Error('Failed to fetch news');
+            }
+            const news = await response.json();
+            this.setState({ news });
+        } catch (error) {
+            console.error('Error fetching news:', error);
+        }
     }
 
     handleInputChange = (event) => {
@@ -37,16 +57,27 @@ class Cards extends Component {
         this.setState({ showModal: false });
     };
 
-    handleAddNews = () => {
-        // Додати код для додавання новини, наприклад, ви можете викликати
-        // вашу функцію для збереження новини тут
-        console.log('Added news:', this.state.newNews);
+    handleAddNews = async () => {
+        try {
+            const response = await fetch('http://localhost:3001/news', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(this.state.newNews),
+            });
 
-        // Закрити модальне вікно після додавання новини
+            if (!response.ok) {
+                throw new Error('Failed to add news');
+            }
+
+            await this.fetchNews();
+        } catch (error) {
+            console.error('Error adding news:', error);
+        }
+
         this.handleClose();
     };
-
-
 
     render() {
         return (
@@ -55,90 +86,76 @@ class Cards extends Component {
                     <Button variant='dark' onClick={this.handleShow}>
                         Додати
                     </Button>
-                    <FormControl
-                        type='text'
-                        placeholder='Search'
-                        className='text-search'>
-                    </FormControl>
+                    <FormControl type='text' placeholder='Search' className='text-search' />
                     <Button variant='dark'>Search</Button>
                 </Form>
-                <Container>
-                    <Card className="main_cards">
-                        <Card.Body>
-                            <Card.Title>Як росія готує інформаційну атаку на керівництво МО України</Card.Title>
-                            <Card.Text>
-                                Характер інформаційної війни, розгорнутої кремлем з початку вторгнення, свідчить про активізацію зусиль росії, спрямованих на дискредитацію України...
-                            </Card.Text>
-                            <Button variant="secondary" href="/select_news">Деталі</Button>
-                        </Card.Body>
-                        <Card.Footer className="text-muted">21:32 Субота 28 Жовтня, 2023
-                        </Card.Footer>
-                    </Card>
-                    <Card className="main_cards">
-                        <Card.Body>
-                            <Card.Title>«Фортеця Львів» — чергова російська ІПСО</Card.Title>
-                            <Card.Text>
-                                Останнім часом соціальну мережу Tik-Tok заполонили відео з хештегом «Фортеця Львів», під яким користувачі публікують іронічний кавер на пісню гурту «Антитіла»...
-                            </Card.Text>
-                            <Button variant="secondary">Деталі</Button>
-                        </Card.Body>
-                        <Card.Footer className="text-muted">13:24 Субота 19 Серпня, 2023</Card.Footer>
-                    </Card>
-                    <Modal show={this.state.showModal} onHide={this.handleClose}>
-                        <Modal.Header closeButton>
-                            <Modal.Title>Додати новину</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                            <Form>
-                                <Form.Group controlId='formTitle'>
-                                    <Form.Label>Заголовок</Form.Label>
-                                    <Form.Control
-                                        type='text'
-                                        placeholder='Введіть заголовок'
-                                        name='title'
-                                        onChange={this.handleInputChange}
-                                    />
-                                </Form.Group>
-                                <Form.Group controlId='formImageUrl'>
-                                    <Form.Label>Зображення</Form.Label>
-                                    <Form.Control
-                                        type='text'
-                                        placeholder='Введіть посилання на зображення'
-                                        name='imageUrl'
-                                        onChange={this.handleInputChange}
-                                    />
-                                </Form.Group>
-                                <Form.Group controlId='formText'>
-                                    <Form.Label>Стаття</Form.Label>
-                                    <Form.Control
-                                        as='textarea'
-                                        rows={3}
-                                        placeholder='Введіть текст статті'
-                                        name='text'
-                                        onChange={this.handleInputChange}
-                                    />
-                                </Form.Group>
-                                <Form.Group controlId='formSource'>
-                                    <Form.Label>Джерело сторінки</Form.Label>
-                                    <Form.Control
-                                        type='text'
-                                        placeholder='Введіть посилання на джерело сторінки'
-                                        name='source'
-                                        onChange={this.handleInputChange}
-                                    />
-                                </Form.Group>
-                            </Form>
-                        </Modal.Body>
-                        <Modal.Footer>
-                            <Button variant='secondary' onClick={this.handleClose}>
-                                Закрити
-                            </Button>
-                            <Button variant='dark' onClick={this.handleAddNews}>
-                                Додати новину
-                            </Button>
-                        </Modal.Footer>
-                    </Modal>
-                </Container>
+                <div>
+                    {this.state.news.map((newsItem) => (
+                        <Card key={newsItem.id} className='main_cards'>
+                            <Card.Body>
+                                <Card.Title>{newsItem.title}</Card.Title>
+                                <Card.Text>{newsItem.text}...</Card.Text>
+                                <Link to={`/select_news/${newsItem.id}`}>
+                                    <Button variant='secondary'>
+                                        Деталі
+                                    </Button>
+                                </Link>
+                            </Card.Body>
+                            <Card.Footer className='text-muted'>{newsItem.source}</Card.Footer>
+                        </Card>
+                    ))}
+                </div>
+                <Modal show={this.state.showModal} onHide={this.handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Додати новину</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form>
+                            <Form.Group controlId='formTitle'>
+                                <Form.Label>Заголовок</Form.Label>
+                                <Form.Control
+                                    type='text'
+                                    placeholder='Введіть заголовок'
+                                    name='title'
+                                    onChange={this.handleInputChange}
+                                />
+                            </Form.Group>
+                            <Form.Group controlId='formImageUrl'>
+                                <Form.Label>Зображення</Form.Label>
+                                <Form.Control
+                                    type='text'
+                                    placeholder='Введіть посилання на зображення'
+                                    name='imageUrl'
+                                    onChange={this.handleInputChange}
+                                />
+                            </Form.Group>
+                            <Form.Group controlId='formText'>
+                                <Form.Label>Стаття</Form.Label>
+                                <Form.Control
+                                    as='textarea'
+                                    rows={3}
+                                    placeholder='Введіть текст статті'
+                                    name='text'
+                                    onChange={this.handleInputChange}
+                                />
+                            </Form.Group>
+                            <Form.Group controlId='formSource'>
+                                <Form.Label>Джерело сторінки</Form.Label>
+                                <Form.Control
+                                    type='text'
+                                    placeholder='Введіть посилання на джерело сторінки'
+                                    name='source'
+                                    onChange={this.handleInputChange}
+                                />
+                            </Form.Group>
+                        </Form>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant='dark' onClick={this.handleAddNews}>
+                            Додати новину
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
             </div>
         );
     }
