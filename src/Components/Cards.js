@@ -19,8 +19,19 @@ class Cards extends Component {
                 source: '',
             },
             news: [],
+            searchQuery: '',
         };
     }
+
+    handleSearchChange = (event) => {
+        this.setState({ searchQuery: event.target.value });
+    };
+
+    handleSearchSubmit = (event) => {
+        event.preventDefault();
+        this.fetchNews();
+    };
+
 
     componentDidMount() {
         this.fetchNews();
@@ -28,7 +39,12 @@ class Cards extends Component {
 
     async fetchNews() {
         try {
-            const response = await fetch('http://localhost:3001/news');
+            const { searchQuery } = this.state;
+            const url = searchQuery
+                ? `http://localhost:3001/news?title_like=${encodeURIComponent(searchQuery)}`
+                : 'http://localhost:3001/news';
+
+            const response = await fetch(url);
             if (!response.ok) {
                 throw new Error('Failed to fetch news');
             }
@@ -37,6 +53,11 @@ class Cards extends Component {
         } catch (error) {
             console.error('Error fetching news:', error);
         }
+    }
+
+
+    redirectToSearchPage(news) {
+        this.props.history.push(`/news?search=${encodeURIComponent(this.state.searchQuery)}`);
     }
 
     handleInputChange = (event) => {
@@ -79,22 +100,39 @@ class Cards extends Component {
         this.handleClose();
     };
 
+    truncateText = (text, numWords) => {
+        const words = text.split(' ');
+        if (words.length > numWords) {
+            return words.slice(0, numWords).join(' ');
+        }
+        return text;
+    };
+
     render() {
         return (
             <div>
-                <Form inline className='form_search'>
+                <Form inline className='form_search' onSubmit={this.handleSearchSubmit}>
                     <Button variant='dark' onClick={this.handleShow}>
                         Додати
                     </Button>
-                    <FormControl type='text' placeholder='Search' className='text-search' />
-                    <Button variant='dark'>Search</Button>
+                    <FormControl
+                        type='text'
+                        placeholder='Search'
+                        className='text-search'
+                        value={this.state.searchQuery}
+                        onChange={this.handleSearchChange}
+                    />
+                    <Button variant='dark' type="submit">
+                        Пошук
+                    </Button>
                 </Form>
+
                 <div>
                     {this.state.news.map((newsItem) => (
                         <Card key={newsItem.id} className='main_cards'>
                             <Card.Body>
                                 <Card.Title>{newsItem.title}</Card.Title>
-                                <Card.Text>{newsItem.text}...</Card.Text>
+                                <Card.Text>{this.truncateText(newsItem.text, 30)}...</Card.Text>
                                 <Link to={`/select_news/${newsItem.id}`}>
                                     <Button variant='secondary'>
                                         Деталі

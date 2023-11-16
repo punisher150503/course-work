@@ -14,6 +14,7 @@ import Main from '../Pages/Main.js';
 import About from '../Pages/About.js';
 import News from '../Pages/News.js';
 import SelectNews from '../Pages/SelectNews';
+import Contacts from './Contacts.js';
 
 
 
@@ -34,11 +35,11 @@ class Header extends Component {
                             />
                         </Navbar.Brand>
                         <span className='ipso_text'>rusІПСО</span>
-                        <Navbar.Toggle aria-controls='responsive-navbar-nav' />
                         <Navbar.Collapse id='responsive-navbar-nav' className='d-flex align-items-center justify-content-between'>
                             <Nav className="mr-auto">
                                 <Nav.Link href="/news" className='text-dark'> Новини </Nav.Link>
                                 <Nav.Link href="/about" className='text-dark'> Про ІПсО України </Nav.Link>
+                                <Nav.Link href="/contacts" className='text-dark'> Контакти </Nav.Link>
                             </Nav>
                             <Form>
                                 <a href="https://www.instagram.com/sof_ua/" target="_blank" rel="noopener noreferrer">
@@ -54,7 +55,6 @@ class Header extends Component {
                                     <img className='social_img' src={youtube} height="30" width="30" alt="youtube" />
                                 </a>
                             </Form>
-
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>
@@ -64,6 +64,7 @@ class Header extends Component {
                         <Route exact path="/" element={<Main />} />
                         <Route exact path="/about" element={<About />} />
                         <Route exact path="/news" element={<News />} />
+                        <Route exact path="/contacts" element={<Contacts/>} />
                         <Route exact path="/select_news/:id" element={<SelectNews />} />
                     </Routes>
                 </Router>
