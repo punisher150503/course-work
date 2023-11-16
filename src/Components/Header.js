@@ -14,7 +14,7 @@ import Main from '../Pages/Main.js';
 import About from '../Pages/About.js';
 import News from '../Pages/News.js';
 import SelectNews from '../Pages/SelectNews';
-import Contacts from './Contacts.js';
+import Contacts from '../Pages/Contacts.js';
 
 
 
