@@ -31,6 +31,7 @@ class Primary extends Component {
                         </Col>
                     </Row>
                 </Container>
+                <footer className='footer'>© 2023 rusІПСО. Розробив: Бондар Роман</footer>
             </div>
         );
     }

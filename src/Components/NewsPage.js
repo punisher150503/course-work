@@ -38,7 +38,7 @@ class NewsPage extends Component {
     handleSaveChanges = async () => {
         const { editingNews } = this.state;
         const { newsItemId } = this.props;
-    
+
         try {
             const response = await fetch(`http://localhost:3001/news/${newsItemId}`, {
                 method: 'PUT',
@@ -47,20 +47,20 @@ class NewsPage extends Component {
                 },
                 body: JSON.stringify(editingNews),
             });
-    
+
             if (!response.ok) {
                 throw new Error('Не вдалося оновити дані на сервері');
             }
-    
+
             window.location.reload();
-    
+
         } catch (error) {
             console.error('Помилка при спробі оновлення даних на сервері:', error);
         }
     };
-    
-    
-    
+
+
+
     handleInputChange = (e) => {
         const { name, value } = e.target;
         this.setState((prevState) => ({
@@ -188,6 +188,7 @@ class NewsPage extends Component {
                         </Button>
                     </Modal.Footer>
                 </Modal>
+                <footer className='footer'>© 2023 rusІПСО. Розробив: Бондар Роман</footer>
             </div>
         );
     }

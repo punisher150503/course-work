@@ -194,6 +194,7 @@ class Cards extends Component {
                         </Button>
                     </Modal.Footer>
                 </Modal>
+                <footer className='footer'>© 2023 rusІПСО. Розробив: Бондар Роман</footer>
             </div>
         );
     }

@@ -1,4 +1,13 @@
-body{
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+* {
+    font-family: "Montserrat Alternates";
+    margin: 0;
+    padding: 0;
+}
+
+body {
     background-color: silver;
 }
 
@@ -25,74 +34,121 @@ body{
     background: rgba($color: #000000, $alpha: 0.5);
 }
 
-.main_text{
+.main_text {
     font-size: 50px;
     font-weight: bolder;
     text-align: center;
     margin-top: 25px;
 }
 
-.logo{
+.logo {
     height: 480px;
     margin-left: 65px;
 }
 
-.head_text{
+.head_text {
     text-align: center;
     font-weight: bolder;
-    margin: 40px 0 30px 0;
+    margin: 16px 0 30px 0;
 }
 
-.text_info{
+.text_info {
     text-align: justify;
-    font-size:large;
+    font-size: large;
 }
 
-.text_info_row{
+.text_info_row {
+    font-size: 19px;
+    font-weight: 200;
     background-color: silver;
     border: none;
 }
 
-.main_container{
+.main_container {
     margin-top: 20px;
 }
 
-.main_cards{
+.main_cards {
     text-align: center;
     width: 80%;
     margin: 0 auto 20px auto;
 }
 
-.news_container{
+.news_container {
     width: 75%;
 }
-.news_text{
+
+.news_text {
     text-align: justify;
     margin-top: 30px;
 }
 
-.news_img{
+.news_img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.main_text{
+.main_text {
     margin: 10px 0 30px 0;
 }
 
-.form_search{
+.form_search {
     display: flex;
     width: 30%;
     margin: 20px auto 20px auto;
 }
 
-.social_img{
+.social_img {
     margin: 0 5px 0 5px;
 }
 
-.news_source{
+.news_source {
     margin-bottom: 30px;
     display: flex;
     justify-content: space-between;
+}
+
+.contact_margin {
+    margin-top: 40px;
+}
+
+.support_div {
+    margin-top: 27px;
+    display: flex;
+}
+
+.support_text {
+    margin-right: 45px;
+}
+
+.map_col {
+    margin: auto;
+}
+
+.footer {
+    background-color: rgb(111, 118, 124);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 40px;
+}
+
+.footer_fix {
+    background-color: rgb(111, 118, 124);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 40px;
 }
