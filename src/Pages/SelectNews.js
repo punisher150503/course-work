@@ -9,7 +9,7 @@ const SelectNews = () => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await fetch('http://localhost:3001/news');
+        const response = await fetch('https://gwxxk7z3-3001.euw.devtunnels.ms/news');
         if (!response.ok) {
           throw new Error('Не вдалося отримати дані новин');
         }

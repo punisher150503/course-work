@@ -65,14 +65,13 @@ class CarouselBox extends Component {
                                 title="YouTube Video"
                                 width="100%"
                                 height="600"
-                                src="https:/www.youtube.com/embed/l4SU9NVZCQM?si=6Nj6BMoh28kIRmEL"
-                                frameBorder="0"
+                                src="https://www.youtube.com/embed/l4SU9NVZCQM?si=6Nj6BMoh28kIRmEL"
                                 allowFullScreen
                             ></iframe>
                         </Card>
                     </Carousel.Item>
                 </Carousel>
-                <footer className='footer'>© 2023 rusІПСО. Розробив: Бондар Роман</footer>
+                <footer className='footer_fix'>© 2023 rusІПСО. Розробив: Бондар Роман</footer>
             </div>
         );
     }

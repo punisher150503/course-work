@@ -40,7 +40,7 @@ class NewsPage extends Component {
         const { newsItemId } = this.props;
 
         try {
-            const response = await fetch(`http://localhost:3001/news/${newsItemId}`, {
+            const response = await fetch(`https://gwxxk7z3-3001.euw.devtunnels.ms/news/${newsItemId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -75,7 +75,7 @@ class NewsPage extends Component {
         const { newsItemId } = this.props;
 
         try {
-            const response = await fetch(`http://localhost:3001/news/${newsItemId}`, {
+            const response = await fetch(`https://gwxxk7z3-3001.euw.devtunnels.ms/news/${newsItemId}`, {
                 method: 'DELETE',
             });
 

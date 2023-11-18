@@ -41,8 +41,8 @@ class Cards extends Component {
         try {
             const { searchQuery } = this.state;
             const url = searchQuery
-                ? `http://localhost:3001/news?title_like=${encodeURIComponent(searchQuery)}`
-                : 'http://localhost:3001/news';
+                ? `https://gwxxk7z3-3001.euw.devtunnels.ms/news?title_like=${encodeURIComponent(searchQuery)}`
+                : 'https://gwxxk7z3-3001.euw.devtunnels.ms/news';
 
             const response = await fetch(url);
             if (!response.ok) {
@@ -80,7 +80,7 @@ class Cards extends Component {
 
     handleAddNews = async () => {
         try {
-            const response = await fetch('http://localhost:3001/news', {
+            const response = await fetch('https://gwxxk7z3-3001.euw.devtunnels.ms/news', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
